@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <ctype.h>
-#include <math.h>
 #include <string.h>
 
 char hex[1000];
@@ -9,6 +8,9 @@ int i, dec;
 
 int main()
 {
+    int decimalValue = htoi("10F");
+    printf("Decimal value: %d\n", decimalValue); // Output the result
+    return 0;
 }
 
 int htoi(char hex[])
