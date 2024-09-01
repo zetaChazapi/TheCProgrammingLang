@@ -7,6 +7,7 @@ int getLine(char line[], int maxline);
 void copy(char to[], char from[]);
 char longestThanEighty[MAXLINE];
 void reverse(char s[], int p, int r);
+void reverseVarTwo(char s[]);
 int x, p, r;
 
 int main()
@@ -83,5 +84,16 @@ void reverse(char s[], int p, int r)
         s[p] = s[r];
         s[r] = x;
         reverse(s, p + 1, r - 1);
+    }
+}
+
+// comma operators
+void reverseVarTwo(char s[])
+{
+    int c, i, j;
+
+    for (i = 0, j = strlen(s) - 1; i < j; i++, j--)
+    {
+        c = s[i], s[i] = s[j], s[j] = c;
     }
 }
