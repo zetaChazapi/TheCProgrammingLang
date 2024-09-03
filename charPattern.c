@@ -1,13 +1,12 @@
 #include <stdio.h>
 #define MAXLINE 1000
 
-int getline(char line[], int max);
 int strindex(char source[], char searchfor[]);
 int strrindex(char s[], char t[]);
 
 char pattern[] = "ould";
 
-main()
+int main()
 {
     char line[MAXLINE];
     int found = 0;
@@ -59,9 +58,9 @@ int strindex(char s[], char t[])
     return -1;
 }
 
-int strrindex(char s[], char t[])
-{
-}
+// int strrindex(char s[], char t[])
+// {
+// }
 
 // cc main.c getline.c strindex.c if they were all in different files
 // a.out is the executable file with all of them together
