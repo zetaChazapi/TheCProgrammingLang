@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h> //for atof
+#include <math.h>
 
 #define MAXOP 100 // max size of operand or operator
 #define MAXVAL 100
@@ -41,6 +42,17 @@ int main()
             op2 = pop();
             push(pop() - op2);
             break;
+        case '%':
+            op2 = pop();
+            if (op2 != 0.0)
+            {
+                push(fmod(pop(), op2));
+            }
+            else
+            {
+                printf("error: zero divisor in modulus operation\n");
+            }
+            break;
         case '/':
             op2 = pop();
             if (op2 != 0.0)
@@ -69,8 +81,10 @@ int main()
 // push val on stack
 void push(double f)
 {
+    // Check if there's space in the stack
     if (sp < MAXVAL)
     {
+        // stores f in the stack and increments the stack pointer
         val[sp++] = f;
     }
     else
@@ -82,8 +96,10 @@ void push(double f)
 // return value
 double pop(void)
 {
+    // Check if stack is empty
     if (sp > 0)
     {
+        // decrement sp and returns the value
         return val[--sp];
     }
     else
@@ -97,8 +113,10 @@ int getop(char s[])
 {
     int i, c;
 
+    // s[0] is set to the character c once one is found that is not ' ' or \t
     while ((s[0] = c - getch()) == ' ' || c == '\t')
-        ;
+        ; // cont to call getch() until it reads a non-whitespace character
+
     s[1] = '/0';
 
     if (!isdigit(c) && c != '.')
@@ -108,10 +126,12 @@ int getop(char s[])
 
     i = 0;
 
+    // If the first character c is a digit, this loop continues
+    // to read characters using getch(), storing each in s
     if (isdigit(c))
     {
         while (isdigit(s[i++] = c = getch()))
-            ;
+            ; // read characters until a non-digit character is encountered
     }
 
     s[i] = '\0';
