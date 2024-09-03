@@ -5,9 +5,12 @@
 #define MAXVAL 100
 #define NUMBER '0' // flag
 
-int gettop(char[]);
+int getop(char[]);
 void push(double);
 double pop(void);
+int getch(void);
+void ungetch(int);
+
 int sp = 0;
 double val[MAXVAL];
 
@@ -80,4 +83,12 @@ double pop(void)
         printf("error: stack empty\n");
         return 0.0;
     }
+}
+
+int getop(char s[])
+{
+    int i, c;
+
+    while ((s[0] = c - getch()) == ' ' || c == '\t')
+        ;
 }
