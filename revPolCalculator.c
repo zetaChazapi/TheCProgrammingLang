@@ -13,10 +13,10 @@ double pop(void);
 int getch(void);
 void ungetch(int);
 
-int sp = 0;         // next free tack position
-double val[MAXVAL]; // value stack
-char buf[BUFSIZE];  // buffer for ungetch
-int bufp = 0;       // next free position in buf
+int sp = 0;               // next free tack position
+double val[MAXVAL];       // value stack
+static char buf[BUFSIZE]; // buffer for ungetch
+static int bufp = 0;      // next free position in buf
 
 int main()
 {
@@ -138,7 +138,14 @@ int getop(char s[])
 
     if (c != EOF)
     {
-        ungetch(c);
+        if (bufp >= BUFSIZE)
+        {
+            printf("ungetch: too many characters\n");
+        }
+        else
+        {
+            buf[bufp++] = c;
+        }
     }
 
     return NUMBER;
@@ -151,14 +158,14 @@ int getch(void)
 }
 
 // push char back on input
-void ungetch(int c)
-{
-    if (bufp >= BUFSIZE)
-    {
-        printf("ungetch: too many characters\n");
-    }
-    else
-    {
-        buf[bufp++] = c;
-    }
-}
+// void ungetch(int c)
+// {
+//     if (bufp >= BUFSIZE)
+//     {
+//         printf("ungetch: too many characters\n");
+//     }
+//     else
+//     {
+//         buf[bufp++] = c;
+//     }
+// }
