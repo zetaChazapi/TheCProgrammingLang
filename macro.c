@@ -19,3 +19,8 @@ int main()
 
     return 0;
 }
+
+/*Macros are suitable for simple substitutions, constants,
+or small code snippets where inline expansion is desired. Functions
+are better for encapsulating logic, maintaining code safety,
+readability, and debuggability.*/
